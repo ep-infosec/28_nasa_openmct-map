@@ -1,0 +1,29 @@
+.mct-map-layer-info {
+    background: none !important;
+    top: 30px;
+    right: 5px;
+    left: 5px;
+    height: auto;
+    line-height: 100%;
+    pointer-events: none;
+}
+
+.mct-map-layer-info .mct-map-baselayer-info,
+.mct-map-layer-info .mct-map-heatmap-info {
+    opacity: 1;
+}
+
+.mct-map-layer-info p {
+    color: #ccc;
+    display: block;
+    margin: 0px 1px 0px 0px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.mct-map-layer-info p:last-child {
+    margin-bottom: 0px;
+    margin-right: 0px;
+}

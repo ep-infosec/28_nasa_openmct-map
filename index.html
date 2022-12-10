@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <script src="node_modules/openmct/dist/openmct.js"></script>
+    <script src="dist/openmct-map.js"></script>
+    <link rel="stylesheet" href="dist/openmct-map.css" type="text/css" media="screen">
+    <script>
+        var THIRTY_MINUTES = 30 * 60 * 1000;
+        document.addEventListener("DOMContentLoaded", function () {
+            openmct.install(new OpenMCTMapPlugin());
+
+            openmct.setAssetPath('/node_modules/openmct/dist');
+            openmct.install(openmct.plugins.MyItems());
+            openmct.install(openmct.plugins.LocalStorage());
+            openmct.install(openmct.plugins.Generator());
+            openmct.install(openmct.plugins.ExampleImagery());
+            openmct.install(openmct.plugins.UTCTimeSystem());
+            openmct.install(openmct.plugins.Espresso());
+            openmct.install(openmct.plugins.Conductor({
+                menuOptions: [
+                    {
+                        name: "Fixed",
+                        timeSystem: 'utc',
+                        bounds: {
+                            start: Date.now() - 30 * 60 * 1000,
+                            end: Date.now()
+                        }
+                    },
+                    {
+                        name: "Realtime",
+                        timeSystem: 'utc',
+                        clock: 'local',
+                        clockOffsets: {
+                            start: -25 * 60 * 1000,
+                            end: 5 * 60 * 1000
+                        }
+                    }
+                ]
+            }));
+            openmct.time.clock('local', {start: -THIRTY_MINUTES, end: 0});
+            openmct.time.timeSystem('utc');
+
+            openmct.start();
+        });
+    </script>
+    <link rel="icon" type="image/png" href="node_modules/openmct/dist/platform/commonUI/general/res/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="node_modules/openmct/dist/platform/commonUI/general/res/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="node_modules/openmct/dist/platform/commonUI/general/res/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="shortcut icon" href="node_modules/openmct/dist/platform/commonUI/general/res/images/favicons/favicon.ico">
+</head>
+<body class="user-environ">
+</body>
+</html>
